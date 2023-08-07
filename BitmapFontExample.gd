@@ -33,6 +33,9 @@ extends Control
 # Escolha o valor do kerning no Inspector
 @export var kerning:int = -50
 
+@export_category("ASCII Table")
+@export var ascii_table:TextureRect
+
 func _ready() -> void:
 	# Esse método vai alterar o tamanho de um glyph específico
 	_set_specific_glyph_size()
@@ -122,3 +125,20 @@ func _set_A_and_B_glyphs_kerning() -> void:
 	print(font_file.get_kerning(cache_index, mysterious_size, glyph_pair))
 
 	
+# METODS PARA EXIBIR E OCULTAR A TABELA ASCII
+func _on_ascii_table_gui_input(event:InputEvent):
+	
+	if not event is InputEventMouseButton: return
+	
+	event = event as InputEventMouseButton
+		
+	if event.button_index == MOUSE_BUTTON_LEFT and event.pressed:
+		ascii_table.visible = true
+		
+func _on_ascii_tabler_full_gui_input(event):
+	if not event is InputEventMouseButton: return
+	
+	event = event as InputEventMouseButton
+		
+	if event.button_index == MOUSE_BUTTON_LEFT and event.pressed:
+		ascii_table.visible = false
