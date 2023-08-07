@@ -1,0 +1,55 @@
+[gd_scene load_steps=6 format=3 uid="uid://dgl3hw2htvfwc"]
+
+[ext_resource type="FontFile" uid="uid://c3oqcqj1c852" path="res://Bitmap Font Numbers Small.png" id="1_bkj26"]
+
+[sub_resource type="GDScript" id="GDScript_igfdv"]
+script/source = "extends Control
+
+var bitmap_font:BitmapFont
+"
+
+[sub_resource type="SystemFont" id="SystemFont_4qnrn"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_i0wat"]
+font = SubResource("SystemFont_4qnrn")
+font_size = 19
+
+[sub_resource type="LabelSettings" id="LabelSettings_xwpla"]
+line_spacing = 0.0
+font = ExtResource("1_bkj26")
+outline_size = 5
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = SubResource("GDScript_igfdv")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+
+[node name="Description" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+text = "Para usar imagens PNG como fonte:
+- Clique no arquivo PNG.
+- Abra a aba 'Import'.
+- Defina o 'Character Ranges' com base na tabela ASCII.
+- Defina o número de colunas e fileiras da imagem PNG.
+- 'Reimport'"
+label_settings = SubResource("LabelSettings_i0wat")
+
+[node name="BitmapFont" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+text = "01234
+56789"
+label_settings = SubResource("LabelSettings_xwpla")
+horizontal_alignment = 1

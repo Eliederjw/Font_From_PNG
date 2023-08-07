@@ -1,0 +1,118 @@
+[gd_scene load_steps=8 format=3 uid="uid://dgl3hw2htvfwc"]
+
+[ext_resource type="FontFile" uid="uid://c3oqcqj1c852" path="res://Bitmap Font Numbers.png" id="1_526i1"]
+[ext_resource type="Script" path="res://BitmapFontExample.gd" id="1_hbki0"]
+[ext_resource type="Texture2D" uid="uid://djd15516ocfg7" path="res://Imgs/Exemplo de Import.PNG" id="3_erhnv"]
+[ext_resource type="Texture2D" uid="uid://c8na88h3ge2wl" path="res://Imgs/Standard-ASCII-Table.webp" id="4_qlxmw"]
+
+[sub_resource type="SystemFont" id="SystemFont_4qnrn"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_i0wat"]
+line_spacing = 0.0
+font = SubResource("SystemFont_4qnrn")
+font_size = 15
+
+[sub_resource type="LabelSettings" id="LabelSettings_xwpla"]
+line_spacing = 0.0
+font = ExtResource("1_526i1")
+outline_size = 5
+
+[node name="Control" type="Control" node_paths=PackedStringArray("font_label")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_hbki0")
+font_file = ExtResource("1_526i1")
+font_label = NodePath("Generalmargin/VBoxContainer/HBoxContainer/ColorRect/BitmapFont")
+font_size = 30
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="Generalmargin" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Generalmargin"]
+layout_mode = 2
+alignment = 1
+
+[node name="HBoxDescription" type="HBoxContainer" parent="Generalmargin/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 0.0
+
+[node name="DescriptionMargin" type="MarginContainer" parent="Generalmargin/VBoxContainer/HBoxDescription"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 10
+
+[node name="Description" type="Label" parent="Generalmargin/VBoxContainer/HBoxDescription/DescriptionMargin"]
+layout_mode = 2
+text = "Para usar imagens PNG como font:
+- Clique no arquivo PNG.
+- Abra a aba 'Import'.
+- Defina o 'Character Ranges' com base na tabela ASCII.
+- Defina o número de colunas e fileiras da imagem PNG.
+- 'Reimport'"
+label_settings = SubResource("LabelSettings_i0wat")
+autowrap_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="Generalmargin/VBoxContainer/HBoxDescription"]
+layout_mode = 2
+size_flags_horizontal = 3
+texture = ExtResource("3_erhnv")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Generalmargin/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+alignment = 1
+
+[node name="ColorRect" type="ColorRect" parent="Generalmargin/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+color = Color(0.866667, 0.866667, 0.866667, 1)
+
+[node name="BitmapFont" type="Label" parent="Generalmargin/VBoxContainer/HBoxContainer/ColorRect"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+text = "01234
+57389"
+label_settings = SubResource("LabelSettings_xwpla")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="TextureRect" type="TextureRect" parent="Generalmargin/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+texture = ExtResource("4_qlxmw")
+expand_mode = 1
+stretch_mode = 5
