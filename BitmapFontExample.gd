@@ -37,13 +37,13 @@ extends Control
 @export var ascii_table:TextureRect
 
 func _ready() -> void:
-	# Esse método vai alterar o tamanho de um glyph específico
-	_set_specific_glyph_size()
 	# Esse método vai alterar o tamanho de todos os glyphs relacionados ao font_file
 	_set_all_glyphs_size()
+	# Esse método vai alterar o tamanho de um glyph específico
+	_set_specific_glyph_size()
 	# Esse médoto vai gerar um valor aleatório para a posição vertical (ou "altura") de cada glyph
-#	_set_random_vertical_offset()
-	
+	_set_random_vertical_offset()
+	# Esse método vai definir o espaçamento entre duas letras específicas
 	_set_A_and_B_glyphs_kerning()
 	
 	# Linhas para contornar um bug da Godot de não atualizar o kerning da label. 
@@ -60,7 +60,7 @@ func _set_specific_glyph_size() -> void:
 	# mysterious_size se refere ao parâmetro 'size' exigido nos métodos set_glyph_*. Vai ser sempre Vector2i(1, 0). Não me pergunte porquê.
 	var mysterious_size:Vector2i = Vector2i(1,0)
 	# specific_glyph_size se refere ao tamanho do glyph (ou letra)
-	var specific_glyph_size:Vector2 = Vector2(font_size, font_size)
+	var specific_glyph_size:Vector2 = Vector2(specific_font_size, specific_font_size)
 
 	# Looping percorrendo cada glyph da imagem e alterando o tamanho com set_glyph_size
 	font_file.set_glyph_size(cache_index, mysterious_size, specific_glyph, specific_glyph_size)
@@ -122,23 +122,6 @@ func _set_A_and_B_glyphs_kerning() -> void:
 	var mysterious_size:int = 1
 	var glyph_pair:Vector2i = Vector2i(glyph_A, glyph_B)
 	font_file.set_kerning(cache_index, mysterious_size, glyph_pair, Vector2(kerning, 0))
-	print(font_file.get_kerning(cache_index, mysterious_size, glyph_pair))
+	print("Spcace between glyph A and glyph B is: " + \
+			str(font_file.get_kerning(cache_index, mysterious_size, glyph_pair).x))
 
-	
-# METODS PARA EXIBIR E OCULTAR A TABELA ASCII
-func _on_ascii_table_gui_input(event:InputEvent):
-	
-	if not event is InputEventMouseButton: return
-	
-	event = event as InputEventMouseButton
-		
-	if event.button_index == MOUSE_BUTTON_LEFT and event.pressed:
-		ascii_table.visible = true
-		
-func _on_ascii_tabler_full_gui_input(event):
-	if not event is InputEventMouseButton: return
-	
-	event = event as InputEventMouseButton
-		
-	if event.button_index == MOUSE_BUTTON_LEFT and event.pressed:
-		ascii_table.visible = false

@@ -1,9 +1,11 @@
-[gd_scene load_steps=8 format=3 uid="uid://dgl3hw2htvfwc"]
+[gd_scene load_steps=12 format=3 uid="uid://dgl3hw2htvfwc"]
 
 [ext_resource type="FontFile" uid="uid://c3oqcqj1c852" path="res://Bitmap Font Numbers.png" id="1_526i1"]
 [ext_resource type="Script" path="res://BitmapFontExample.gd" id="1_hbki0"]
 [ext_resource type="Texture2D" uid="uid://djd15516ocfg7" path="res://Imgs/Exemplo de Import.PNG" id="3_erhnv"]
 [ext_resource type="Texture2D" uid="uid://c8na88h3ge2wl" path="res://Imgs/Standard-ASCII-Table.webp" id="4_qlxmw"]
+[ext_resource type="Script" path="res://ASCIITable_FadeIn.gd" id="5_dxv1a"]
+[ext_resource type="Script" path="res://ASCIITabler_FadeOut.gd" id="6_esqq6"]
 
 [sub_resource type="SystemFont" id="SystemFont_4qnrn"]
 
@@ -17,6 +19,12 @@ line_spacing = 0.0
 font = ExtResource("1_526i1")
 outline_size = 5
 
+[sub_resource type="SystemFont" id="SystemFont_yg34k"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_ddquj"]
+font = SubResource("SystemFont_yg34k")
+font_color = Color(0, 0, 0, 1)
+
 [node name="Control" type="Control" node_paths=PackedStringArray("font_label", "ascii_table")]
 layout_mode = 3
 anchors_preset = 15
@@ -28,6 +36,7 @@ script = ExtResource("1_hbki0")
 font_file = ExtResource("1_526i1")
 font_label = NodePath("Generalmargin/VBoxContainer/HBoxContainer/ColorRect/BitmapFont")
 font_size = 30
+specific_font_size = 50
 ascii_table = NodePath("ASCIITablerFull")
 
 [node name="ColorRect" type="ColorRect" parent="."]
@@ -111,12 +120,31 @@ label_settings = SubResource("LabelSettings_xwpla")
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="ASCIITable" type="TextureRect" parent="Generalmargin/VBoxContainer/HBoxContainer"]
+[node name="ASCIITable" type="TextureRect" parent="Generalmargin/VBoxContainer/HBoxContainer" node_paths=PackedStringArray("ascii_table")]
 layout_mode = 2
 size_flags_horizontal = 3
 texture = ExtResource("4_qlxmw")
 expand_mode = 1
 stretch_mode = 5
+script = ExtResource("5_dxv1a")
+ascii_table = NodePath("../../../../ASCIITablerFull")
+
+[node name="Label" type="Label" parent="Generalmargin/VBoxContainer/HBoxContainer/ASCIITable"]
+self_modulate = Color(1, 1, 1, 0.521569)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -76.0
+offset_top = -13.0
+offset_right = 76.0
+offset_bottom = 13.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Clique para ampliar"
+label_settings = SubResource("LabelSettings_ddquj")
 
 [node name="ASCIITablerFull" type="TextureRect" parent="."]
 visible = false
@@ -133,6 +161,7 @@ offset_bottom = 20.0
 grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("4_qlxmw")
+script = ExtResource("6_esqq6")
 
-[connection signal="gui_input" from="Generalmargin/VBoxContainer/HBoxContainer/ASCIITable" to="." method="_on_ascii_table_gui_input"]
-[connection signal="gui_input" from="ASCIITablerFull" to="." method="_on_ascii_tabler_full_gui_input"]
+[connection signal="gui_input" from="Generalmargin/VBoxContainer/HBoxContainer/ASCIITable" to="Generalmargin/VBoxContainer/HBoxContainer/ASCIITable" method="_on_ascii_table_gui_input"]
+[connection signal="gui_input" from="ASCIITablerFull" to="ASCIITablerFull" method="_on_ascii_tabler_full_gui_input"]
