@@ -4,8 +4,8 @@
 [ext_resource type="Script" path="res://BitmapFontExample.gd" id="1_hbki0"]
 [ext_resource type="Texture2D" uid="uid://djd15516ocfg7" path="res://Imgs/Exemplo de Import.PNG" id="3_erhnv"]
 [ext_resource type="Texture2D" uid="uid://c8na88h3ge2wl" path="res://Imgs/Standard-ASCII-Table.webp" id="4_qlxmw"]
-[ext_resource type="Script" path="res://ASCIITable_FadeIn.gd" id="5_dxv1a"]
-[ext_resource type="Script" path="res://ASCIITabler_FadeOut.gd" id="6_esqq6"]
+[ext_resource type="Script" path="res://ASCII Table/ASCIITable_FadeIn.gd" id="5_4ex5m"]
+[ext_resource type="Script" path="res://ASCII Table/ASCIITabler_FadeOut.gd" id="6_hnl0d"]
 
 [sub_resource type="SystemFont" id="SystemFont_4qnrn"]
 
@@ -126,7 +126,7 @@ size_flags_horizontal = 3
 texture = ExtResource("4_qlxmw")
 expand_mode = 1
 stretch_mode = 5
-script = ExtResource("5_dxv1a")
+script = ExtResource("5_4ex5m")
 ascii_table = NodePath("../../../../ASCIITablerFull")
 
 [node name="Label" type="Label" parent="Generalmargin/VBoxContainer/HBoxContainer/ASCIITable"]
@@ -161,7 +161,7 @@ offset_bottom = 20.0
 grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("4_qlxmw")
-script = ExtResource("6_esqq6")
+script = ExtResource("6_hnl0d")
 
 [connection signal="gui_input" from="Generalmargin/VBoxContainer/HBoxContainer/ASCIITable" to="Generalmargin/VBoxContainer/HBoxContainer/ASCIITable" method="_on_ascii_table_gui_input"]
 [connection signal="gui_input" from="ASCIITablerFull" to="ASCIITablerFull" method="_on_ascii_tabler_full_gui_input"]
